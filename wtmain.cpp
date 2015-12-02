@@ -38,9 +38,9 @@ struct WtApplication : public Wt::WApplication
   {
     setTitle("TestEntrance");
     this->useStyleSheet("wt.css");
-    boost::shared_ptr<const IpAddress> ip_address(new IpAddress(env.clientAddress()));
-    WtEntrance::Get()->Visit(ip_address.get());
-    root()->addWidget(new ToolTestEntrance::WtMenuDialog(ip_address));
+    boost::shared_ptr<const ribi::IpAddress> ip_address(new ribi::IpAddress(env.clientAddress()));
+    ribi::WtEntrance::Get()->Visit(ip_address.get());
+    root()->addWidget(new ribi::tent::WtMenuDialog(ip_address));
   }
 };
 
@@ -52,8 +52,8 @@ Wt::WApplication *createApplication(const Wt::WEnvironment& env)
 
 int main(int argc, char **argv)
 {
-  WtAutoConfig::SaveDefaultStylesheet();
-  WtAutoConfig a(argc,argv,createApplication);
+  ribi::WtAutoConfig::SaveDefaultStylesheet();
+  ribi::WtAutoConfig a(argc,argv,createApplication);
   return a.Run();
 }
 

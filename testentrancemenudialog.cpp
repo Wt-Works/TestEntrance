@@ -24,11 +24,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 
 #include "ipaddress.h"
-#include "richelbilderbeekprogram.h"
 #include "trace.h"
 #include "testtimer.h"
 
-int ribi::ToolTestEntrance::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::tent::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -43,13 +42,13 @@ int ribi::ToolTestEntrance::MenuDialog::ExecuteSpecific(const std::vector<std::s
   return 1;
 }
 
-ribi::About ribi::ToolTestEntrance::MenuDialog::GetAbout() const noexcept
+ribi::About ribi::tent::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
     "TestEntrance",
     "tool to test WtEntrance",
-    "the 19th of September 2011",
+    "December 2nd 2015",
     "2011-2015",
     "http://www.richelbilderbeek.nl/ToolTestEntrance.htm",
     GetVersion(),
@@ -59,7 +58,7 @@ ribi::About ribi::ToolTestEntrance::MenuDialog::GetAbout() const noexcept
   return a;
 }
 
-ribi::Help ribi::ToolTestEntrance::MenuDialog::GetHelp() const noexcept
+ribi::Help ribi::tent::MenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -73,30 +72,22 @@ ribi::Help ribi::ToolTestEntrance::MenuDialog::GetHelp() const noexcept
   );
 }
 
-boost::shared_ptr<const ribi::Program> ribi::ToolTestEntrance::MenuDialog::GetProgram() const noexcept
+std::string ribi::tent::MenuDialog::GetVersion() const noexcept
 {
-  const boost::shared_ptr<const Program> p {
-    new ProgramTestEntrance
-  };
-  assert(p);
-  return p;
+  return "2.0";
 }
 
-std::string ribi::ToolTestEntrance::MenuDialog::GetVersion() const noexcept
-{
-  return "1.1";
-}
-
-std::vector<std::string> ribi::ToolTestEntrance::MenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::tent::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-09-19: Version 1.0: initial version",
-    "2013-11-05: version 1.1: conformized for ProjectRichelBilderbeekConsole"
+    "2013-11-05: version 1.1: conformized for ProjectRichelBilderbeekConsole",
+    "2015-12-02: version 2.0: moved to own GitHub",
   };
 }
 
 #ifndef NDEBUG
-void ribi::ToolTestEntrance::MenuDialog::Test() noexcept
+void ribi::tent::MenuDialog::Test() noexcept
 {
   {
     static bool is_tested{false};

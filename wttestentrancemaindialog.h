@@ -32,7 +32,7 @@ namespace ribi {
 
 struct IpAddress;
 
-namespace ToolTestEntrance {
+namespace tent {
 
 ///TestEntrance its main dialog
 struct WtMainDialog : public Wt::WContainerWidget

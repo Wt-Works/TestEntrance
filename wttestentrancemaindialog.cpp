@@ -46,7 +46,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtaboutdialog.h"
 #pragma GCC diagnostic pop
 
-ribi::ToolTestEntrance::WtMainDialog::Ui::Ui()
+ribi::tent::WtMainDialog::Ui::Ui()
   : m_edit(new Wt::WLineEdit),
     m_view_names_dialog(new Wt::WContainerWidget),
     m_view_visits_dialog(new Wt::WContainerWidget)
@@ -55,7 +55,7 @@ ribi::ToolTestEntrance::WtMainDialog::Ui::Ui()
   m_edit->setMinimumSize(400,Wt::WLength::Auto);
 }
 
-ribi::ToolTestEntrance::WtMainDialog::WtMainDialog(boost::shared_ptr<const IpAddress> ip_address)
+ribi::tent::WtMainDialog::WtMainDialog(boost::shared_ptr<const IpAddress> ip_address)
  :  m_ip_address(ip_address),
     ui{}
 {
@@ -107,7 +107,7 @@ ribi::ToolTestEntrance::WtMainDialog::WtMainDialog(boost::shared_ptr<const IpAdd
   OnNewVisit();
 }
 
-void ribi::ToolTestEntrance::WtMainDialog::OnNewName()
+void ribi::tent::WtMainDialog::OnNewName()
 {
   assert(ui.m_view_names_dialog);
   ui.m_view_names_dialog->clear();
@@ -127,7 +127,7 @@ void ribi::ToolTestEntrance::WtMainDialog::OnNewName()
   );
 }
 
-void ribi::ToolTestEntrance::WtMainDialog::OnNewVisit()
+void ribi::tent::WtMainDialog::OnNewVisit()
 {
   assert(ui.m_view_visits_dialog);
   ui.m_view_visits_dialog->clear();
@@ -147,7 +147,7 @@ void ribi::ToolTestEntrance::WtMainDialog::OnNewVisit()
   );
 }
 
-Wt::WWidget * ribi::ToolTestEntrance::WtMainDialog::CreateNewWelcomeDialog()
+Wt::WWidget * ribi::tent::WtMainDialog::CreateNewWelcomeDialog()
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -156,13 +156,13 @@ Wt::WWidget * ribi::ToolTestEntrance::WtMainDialog::CreateNewWelcomeDialog()
   {
     const std::string s = WtEntrance::Get()->GetName(m_ip_address.get());
     ui.m_edit->setText(s.c_str());
-    ui.m_edit->keyWentUp().connect(this,&ribi::ToolTestEntrance::WtMainDialog::OnEditChanged);
+    ui.m_edit->keyWentUp().connect(this,&ribi::tent::WtMainDialog::OnEditChanged);
     dialog->addWidget(ui.m_edit);
   }
   return dialog;
 }
 
-void ribi::ToolTestEntrance::WtMainDialog::OnEditChanged()
+void ribi::tent::WtMainDialog::OnEditChanged()
 {
   std::string s = ui.m_edit->text().toUTF8();
   std::replace(s.begin(),s.end(),',',' ');

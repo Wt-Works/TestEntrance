@@ -24,15 +24,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "menudialog.h"
 
 namespace ribi {
-
-namespace ToolTestEntrance {
+namespace tent {
 
 ///The GUI independent part of the menu
 struct MenuDialog final : public ::ribi::MenuDialog
 {
   About GetAbout() const noexcept override;
   Help GetHelp() const noexcept override;
-  boost::shared_ptr<const Program> GetProgram() const noexcept override;
   std::string GetVersion() const noexcept override;
   std::vector<std::string> GetVersionHistory() const noexcept override;
 
@@ -44,8 +42,7 @@ struct MenuDialog final : public ::ribi::MenuDialog
   #endif
 };
 
-} //~namespace ToolTestEntrance
-
+} //~namespace tent
 } //~namespace ribi
 
 #endif // TESTENTRANCEMENUDIALOG_H

@@ -29,7 +29,7 @@ namespace ribi {
 
 struct IpAddress;
 
-namespace ToolTestEntrance {
+namespace tent {
 
 struct WtMenuDialog : public Wt::WContainerWidget
 {

@@ -42,18 +42,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QFile>
 #pragma GCC diagnostic pop
 
-ribi::ToolTestEntrance::WtMenuDialog::WtMenuDialog(
+ribi::tent::WtMenuDialog::WtMenuDialog(
   boost::shared_ptr<const IpAddress> ip_address)
 {
   {
     std::vector<std::string> image_names;
-    image_names.push_back("ToolTestEntranceWelcome.png");
+    image_names.push_back("TestEntranceWelcome.png");
 
     BOOST_FOREACH(const std::string& filename,image_names)
     {
       if (!(QFile::exists(filename.c_str())))
       {
-        QFile f( (std::string(":/ToolTestEntrance/images/") + filename).c_str() );
+        QFile f( (std::string(":/TestEntrance/images/") + filename).c_str() );
         f.copy(filename.c_str());
       }
       if (!boost::filesystem::exists(filename.c_str()))
@@ -101,7 +101,7 @@ ribi::ToolTestEntrance::WtMenuDialog::WtMenuDialog(
   }
 }
 
-Wt::WWidget * ribi::ToolTestEntrance::WtMenuDialog::CreateNewAboutDialog()
+Wt::WWidget * ribi::tent::WtMenuDialog::CreateNewAboutDialog()
 {
   About a = MenuDialog().GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
@@ -111,14 +111,14 @@ Wt::WWidget * ribi::ToolTestEntrance::WtMenuDialog::CreateNewAboutDialog()
   return d;
 }
 
-Wt::WWidget * ribi::ToolTestEntrance::WtMenuDialog::CreateNewMainDialog(boost::shared_ptr<const IpAddress> ip_address) const
+Wt::WWidget * ribi::tent::WtMenuDialog::CreateNewMainDialog(boost::shared_ptr<const IpAddress> ip_address) const
 {
   WtMainDialog * const d = new WtMainDialog(ip_address);
   assert(d);
   return d;
 }
 
-Wt::WWidget * ribi::ToolTestEntrance::WtMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::tent::WtMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -130,6 +130,6 @@ Wt::WWidget * ribi::ToolTestEntrance::WtMenuDialog::CreateNewWelcomeDialog() con
   new Wt::WBreak(dialog);
   new Wt::WBreak(dialog);
   Wt::WGroupBox * const box = new Wt::WGroupBox("Explanation",dialog);
-  box->addWidget(new Wt::WImage("ToolTestEntranceWelcome.png"));
+  box->addWidget(new Wt::WImage("TestEntranceWelcome.png"));
   return dialog;
 }
